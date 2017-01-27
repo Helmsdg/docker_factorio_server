@@ -32,8 +32,8 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_SERVER_GAME_PASSWORD= \
     FACTORIO_SERVER_VERIFY_IDENTITY=
 
-RUN apk --update add curl && \
-    curl -sSL https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.gz && \
+RUN apk update && apk add curl && \
+    curl -SL https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.gz && \
     echo "$FACTORIO_SHA1  /tmp/factorio_headless_x64_$VERSION.tar.gz" | sha1sum -c && \
     tar xzf /tmp/factorio_headless_x64_$VERSION.tar.gz && \
     rm /tmp/factorio_headless_x64_$VERSION.tar.gz && \
